@@ -2,7 +2,7 @@ package vn.unigap.mapper;
 
 import org.modelmapper.ModelMapper;
 import vn.unigap.common.GenericResponse;
-import vn.unigap.response.ApiCreatedResponse;
+import vn.unigap.dto.out.ApiCreatedResponse;
 
 public class ApiCreatedResponseMapper {
     static ModelMapper mapper = new ModelMapper();

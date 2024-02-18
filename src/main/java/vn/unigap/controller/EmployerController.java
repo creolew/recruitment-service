@@ -1,18 +1,19 @@
 package vn.unigap.controller;
 
 
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import vn.unigap.common.AppConstants;
 import vn.unigap.common.GenericResponse;
 import vn.unigap.common.HttpConstant;
-import vn.unigap.dto.EmployerDto;
+import vn.unigap.dto.in.EmployerDto;
+import vn.unigap.dto.in.EmployerResponseDto;
+import vn.unigap.dto.out.EmployerResponse;
 import vn.unigap.mapper.ApiCreatedResponseMapper;
-import vn.unigap.response.ApiCreatedResponse;
+import vn.unigap.dto.out.ApiCreatedResponse;
 import vn.unigap.service.EmployerService;
 
 @RestController
@@ -31,4 +32,37 @@ public class EmployerController {
         return  ResponseEntity.status(HttpStatus.CREATED).body(apiCreatedResponse);
 
     }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<EmployerResponseDto> getEmployerById(@PathVariable(name = "id") long id){
+
+        return ResponseEntity.ok(employerService.getEmployerById(id));
+
+    }
+
+    @GetMapping()
+    public EmployerResponse getAllEmployers(
+            @RequestParam(value = "page", defaultValue = AppConstants.DEFAULT_PAGE_NUMBER, required = false) int page,
+            @RequestParam(value = "pageSize", defaultValue = AppConstants.DEFAULT_PAGE_SIZE, required = false) int pageSize,
+            @RequestParam(value = "sortBy", defaultValue = AppConstants.DEFAULT_SORT_BY, required = false) String sortBy,
+            @RequestParam(value = "sortDir", defaultValue = AppConstants.DEFAULT_SORT_DIRECTION, required = false) String sortDir
+
+    ){
+
+        return employerService.getAllEmployers(page, pageSize, sortBy, sortDir);
+
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<EmployerDto> updateEmployer(@Valid @RequestBody EmployerDto employerDto, @PathVariable(name = "id") long id){
+        EmployerDto employerResponse = employerService.updateEmployer(employerDto, id);
+        return new ResponseEntity<>(employerResponse, HttpStatus.OK);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<EmployerDto> deleteEmployer(@PathVariable(name = "id") long id){
+        employerService.deleteById(id);
+        return new ResponseEntity<>(null, HttpStatus.OK);
+    }
+
 }

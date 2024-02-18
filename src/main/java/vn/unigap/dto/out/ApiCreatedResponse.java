@@ -1,4 +1,4 @@
-package vn.unigap.response;
+package vn.unigap.dto.out;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

@@ -1,13 +1,9 @@
 package vn.unigap.mapper;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import vn.unigap.dto.EmployerDto;
+import vn.unigap.common.ProvinceEnum;
+import vn.unigap.dto.in.EmployerDto;
+import vn.unigap.dto.in.EmployerResponseDto;
 import vn.unigap.entity.Employer;
 
 
@@ -22,5 +18,13 @@ public class EmployerMapper {
     public static Employer mapToEmployer(EmployerDto employerDto){
         Employer employer = mapper.map(employerDto, Employer.class);
         return employer;
+    }
+
+
+    public static EmployerResponseDto mapToEmployResponseDto(EmployerDto employerDto){
+        EmployerResponseDto employerResponseDto = mapper.map(employerDto, EmployerResponseDto.class);
+        String provinceName = ProvinceEnum.getProvinceMap().get(employerResponseDto.getProvinceId());
+        employerResponseDto.setProvinceName(provinceName);
+        return employerResponseDto;
     }
 }
