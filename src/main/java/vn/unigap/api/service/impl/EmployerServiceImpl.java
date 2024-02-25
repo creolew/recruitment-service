@@ -8,10 +8,12 @@ import vn.unigap.api.dto.in.EmployerDto;
 import vn.unigap.api.dto.in.EmployerResponseDto;
 import vn.unigap.api.dto.out.EmployerResponse;
 import vn.unigap.api.entity.Employer;
+import vn.unigap.api.entity.Province;
 import vn.unigap.api.exception.EmailAlreadyExistException;
 import vn.unigap.api.exception.ResourceNotFoundException;
 import vn.unigap.api.mapper.EmployerMapper;
 import vn.unigap.api.repository.EmployerRepository;
+import vn.unigap.api.repository.ProvinceRepository;
 import vn.unigap.api.service.EmployerService;
 
 import java.time.Instant;
@@ -23,25 +25,32 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 
 import org.springframework.data.domain.Sort;
+import vn.unigap.api.service.ProvinceService;
+
 @Service
 @AllArgsConstructor
 public class EmployerServiceImpl implements EmployerService {
 
     EmployerRepository employerRepository;
 
+    ProvinceRepository provinceRepository;
+
+    ProvinceService provinceService;
+
     @Override
     public EmployerDto addEmployer(EmployerDto employerDto) {
 
-        if(employerRepository.existsByEmail(employerDto.getEmail())){
+        if (employerRepository.existsByEmail(employerDto.getEmail())) {
             throw new EmailAlreadyExistException(HttpStatus.BAD_REQUEST, employerDto.getEmail());
         }
 
-        //check if provinceId exists
-        boolean isProvinceIdValid = ProvinceEnum.getProvinceMap().containsKey(employerDto.getProvinceId());
-        if(!isProvinceIdValid){
+//        if(!provinceRepository.existsById(employerDto.getProvinceId())) {
+//            throw new ResourceNotFoundException("Province", "id", employerDto.getProvinceId());
+//        }
+        if (!provinceService.checkExistProvince(employerDto.getProvinceId())) {
             throw new ResourceNotFoundException("Province", "id", employerDto.getProvinceId());
-        }
 
+        }
         Employer employer = EmployerMapper.mapToEmployer(employerDto);
 
         employer.setCreated_at(Instant.now());
@@ -51,6 +60,7 @@ public class EmployerServiceImpl implements EmployerService {
         Employer savedEmployer = employerRepository.save(employer);
 
         EmployerDto savedEmployerDto = EmployerMapper.mapToEmployerDto(savedEmployer);
+
 
         return savedEmployerDto;
     }
@@ -63,7 +73,9 @@ public class EmployerServiceImpl implements EmployerService {
         );
 
         EmployerDto employerDto = EmployerMapper.mapToEmployerDto(employer);
-        return EmployerMapper.mapToEmployResponseDto(employerDto);
+        EmployerResponseDto employerResponseDto = EmployerMapper.mapToEmployResponseDto(employerDto);
+        employerResponseDto.setProvinceName(provinceService.getNameById(employerDto.getProvinceId()));
+        return employerResponseDto;
     }
 
     @Override
@@ -83,9 +95,13 @@ public class EmployerServiceImpl implements EmployerService {
                 .map(employer -> EmployerMapper.mapToEmployerDto(employer))
                 .collect(Collectors.toList());
 
-        List<EmployerResponseDto> content= listOfEmployersDto.stream()
+        List<EmployerResponseDto> content = listOfEmployersDto.stream()
                 .map(employer -> EmployerMapper.mapToEmployResponseDto(employer))
                 .collect(Collectors.toList());
+
+        for(EmployerResponseDto employerResponseDto : content){
+            employerResponseDto.setProvinceName(provinceService.getNameById(employerResponseDto.getProvinceId()));
+        }
 
         EmployerResponse employerResponse = new EmployerResponse();
         employerResponse.setData(content);
