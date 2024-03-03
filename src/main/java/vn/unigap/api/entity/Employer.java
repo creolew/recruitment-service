@@ -8,7 +8,9 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.Instant;
-
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 @Setter
 @Getter
 @NoArgsConstructor
@@ -36,5 +38,6 @@ public class Employer {
     @Column(name= "updated_at")
     private Instant updated_at;
 
-
+    @OneToMany(mappedBy = "employer", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Job> jobs;
 }
