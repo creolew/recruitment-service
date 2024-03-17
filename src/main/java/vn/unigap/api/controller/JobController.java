@@ -7,16 +7,13 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import vn.unigap.api.common.GenericResponse;
 import vn.unigap.api.common.HttpConstant;
-import vn.unigap.api.dto.in.EmployerDto;
-import vn.unigap.api.dto.in.JobDto;
+import vn.unigap.api.dto.in.employer.EmployerDto;
+import vn.unigap.api.dto.in.job.JobDto;
 import vn.unigap.api.dto.out.ApiCreatedResponse;
-import vn.unigap.api.dto.out.JobByEmployerIdDto;
 import vn.unigap.api.dto.out.JobResponseByEmployerIdDto;
 import vn.unigap.api.dto.out.JobResponseDto;
 import vn.unigap.api.mapper.ApiCreatedResponseMapper;
 import vn.unigap.api.service.JobService;
-
-import java.util.List;
 
 @RestController
 @AllArgsConstructor

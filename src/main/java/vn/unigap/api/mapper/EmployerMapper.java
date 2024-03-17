@@ -1,13 +1,10 @@
 package vn.unigap.api.mapper;
 
 import org.modelmapper.ModelMapper;
-import org.springframework.stereotype.Component;
 import vn.unigap.api.common.ProvinceEnum;
-import vn.unigap.api.dto.in.EmployerDto;
-import vn.unigap.api.dto.in.EmployerResponseDto;
+import vn.unigap.api.dto.in.employer.EmployerDto;
+import vn.unigap.api.dto.in.employer.EmployerResponseDto;
 import vn.unigap.api.entity.Employer;
-import vn.unigap.api.service.ProvinceService;
-import vn.unigap.api.service.impl.ProvinceServiceImpl;
 
 public class EmployerMapper {
 

@@ -1,4 +1,4 @@
-package vn.unigap.api.dto.in;
+package vn.unigap.api.dto.in.job;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;

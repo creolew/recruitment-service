@@ -1,4 +1,4 @@
-package vn.unigap.api.dto.in;
+package vn.unigap.api.dto.in.employer;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -9,10 +9,10 @@ import lombok.Setter;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public class EmployerDto {
+public class EmployerResponseDto {
     private String email;
     private String name;
     private int provinceId;
+    private String provinceName;
     private String description;
-
 }

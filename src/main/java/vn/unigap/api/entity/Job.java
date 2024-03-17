@@ -19,11 +19,6 @@ public class Job {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "employer_id", nullable = false)
-    private Employer employer;
-
     @Column(name= "title", nullable = false)
     private String title;
 
@@ -36,10 +31,6 @@ public class Job {
     @Column(name= "salary", nullable = false)
     private int salary;
 
-//    private String fields;
-
-//    private String provinces;
-
     @Column(name= "created_at")
     private Instant created_at;
 
@@ -49,15 +40,17 @@ public class Job {
     @Column(name= "expired_at", nullable = false)
     private Date expired_at;
 
-    @PrePersist
-    protected void onCreate() {
-        created_at = Instant.now();
-        updated_at = Instant.now();
-    }
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "province_id", nullable = false)
+    private Province province;
 
-    @PreUpdate
-    protected void onUpdate() {
-        updated_at = Instant.now();
-    }
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "jobField_id", nullable = false)
+    private JobField jobField;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "employer_id", nullable = false)
+    private Employer employer;
+
 
 }

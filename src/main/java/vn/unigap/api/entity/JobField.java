@@ -1,5 +1,6 @@
 package vn.unigap.api.entity;
 
+
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -13,8 +14,9 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "provinces")
-public class Province {
+@Table(name = "job_fields")
+public class JobField {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -25,13 +27,6 @@ public class Province {
     @Column(name= "slug", length = 255)
     private String slug;
 
-    @OneToMany(mappedBy = "province", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Seeker> seekers;
-
-    @OneToMany(mappedBy = "province", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Resume> resumes;
-
-
-    @OneToMany(mappedBy = "province", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "jobField", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Job> jobs;
 }

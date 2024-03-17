@@ -1,11 +1,8 @@
 package vn.unigap.api.service;
 
-import vn.unigap.api.dto.in.JobDto;
-import vn.unigap.api.dto.out.JobByEmployerIdDto;
+import vn.unigap.api.dto.in.job.JobDto;
 import vn.unigap.api.dto.out.JobResponseByEmployerIdDto;
 import vn.unigap.api.dto.out.JobResponseDto;
-
-import java.util.List;
 
 public interface JobService {
     JobDto addJob(Long employerId, JobDto jobDto);
