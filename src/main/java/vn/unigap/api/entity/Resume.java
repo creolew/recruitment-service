@@ -1,10 +1,7 @@
 package vn.unigap.api.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.time.Instant;
 import java.util.Set;
@@ -15,6 +12,7 @@ import java.util.Set;
 @AllArgsConstructor
 @Entity
 @Table(name = "resumes")
+@Builder
 public class Resume {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,28 +24,6 @@ public class Resume {
 
     private int salary;
 
-    @Column(name= "created_at")
-    private Instant created_at;
-
-    @Column(name= "updated_at")
-    private Instant updated_at;
-
-    @PrePersist
-    protected void onCreate() {
-        created_at = Instant.now();
-        updated_at = Instant.now();
-    }
-
-    @PreUpdate
-    protected void onUpdate() {
-        updated_at = Instant.now();
-    }
-
-
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "province_id", nullable = false)
-    private Province province;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "seeker_id", nullable = false)
@@ -68,7 +44,22 @@ public class Resume {
     private Set<Province> provinces;
 
 
+    @Column(name= "created_at")
+    private Instant created_at;
 
+    @Column(name= "updated_at")
+    private Instant updated_at;
+
+    @PrePersist
+    protected void onCreate() {
+        created_at = Instant.now();
+        updated_at = Instant.now();
+    }
+
+    @PreUpdate
+    protected void onUpdate() {
+        updated_at = Instant.now();
+    }
 
 
 

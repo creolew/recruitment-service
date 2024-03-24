@@ -1,4 +1,4 @@
-package vn.unigap.api.dto.out;
+package vn.unigap.api.dto.out.job;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;

@@ -5,7 +5,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import vn.unigap.api.dto.in.employer.EmployerDto;
 import vn.unigap.api.dto.in.employer.EmployerResponseDto;
-import vn.unigap.api.dto.out.EmployerResponse;
+import vn.unigap.api.dto.out.employer.EmployerResponse;
 import vn.unigap.api.entity.Employer;
 import vn.unigap.api.exception.EmailAlreadyExistException;
 import vn.unigap.api.exception.ResourceNotFoundException;

@@ -5,14 +5,11 @@ import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import vn.unigap.api.common.AppConstants;
 import vn.unigap.api.common.GenericResponse;
 import vn.unigap.api.common.HttpConstant;
-import vn.unigap.api.dto.in.employer.EmployerDto;
 import vn.unigap.api.dto.in.seeker.CreateSeekerInDto;
 import vn.unigap.api.dto.in.seeker.UpdateSeekerInDto;
 import vn.unigap.api.dto.out.ApiCreatedResponse;
-import vn.unigap.api.dto.out.EmployerResponse;
 import vn.unigap.api.dto.out.seeker.SeekerReponseGetAllDto;
 import vn.unigap.api.dto.out.seeker.SeekerResponseBaseDto;
 import vn.unigap.api.dto.out.seeker.SeekerGetResponseDto;
@@ -69,7 +66,7 @@ public class SeekerController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<SeekerGetResponseDto> deleteEmployer(@PathVariable(name = "id") long id){
+    public ResponseEntity<SeekerGetResponseDto> deleteSeeker(@PathVariable(name = "id") long id){
         seekerService.deleteById(id);
         return new ResponseEntity<>(null, HttpStatus.OK);
     }

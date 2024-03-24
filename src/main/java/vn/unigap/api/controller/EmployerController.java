@@ -11,7 +11,7 @@ import vn.unigap.api.common.GenericResponse;
 import vn.unigap.api.common.HttpConstant;
 import vn.unigap.api.dto.in.employer.EmployerDto;
 import vn.unigap.api.dto.in.employer.EmployerResponseDto;
-import vn.unigap.api.dto.out.EmployerResponse;
+import vn.unigap.api.dto.out.employer.EmployerResponse;
 import vn.unigap.api.mapper.ApiCreatedResponseMapper;
 import vn.unigap.api.dto.out.ApiCreatedResponse;
 import vn.unigap.api.service.EmployerService;

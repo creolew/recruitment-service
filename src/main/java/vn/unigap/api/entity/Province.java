@@ -28,8 +28,8 @@ public class Province {
     @OneToMany(mappedBy = "province", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Seeker> seekers;
 
-    @OneToMany(mappedBy = "province", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Resume> resumes;
+//    @OneToMany(mappedBy = "province", cascade = CascadeType.ALL, orphanRemoval = true)
+//    private List<Resume> resumes;
 
 
     @OneToMany(mappedBy = "province", cascade = CascadeType.ALL, orphanRemoval = true)

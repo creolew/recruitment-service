@@ -1,19 +1,19 @@
-package vn.unigap.api.dto.out;
+package vn.unigap.api.dto.out.resume;
 
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
-import vn.unigap.api.dto.in.employer.EmployerResponseDto;
 
 import java.util.List;
 
 @Getter
 @Setter
-public class EmployerResponse {
-
+@Builder
+public class ResumeResponseGetAllDto {
     private int page;
     private int pageSize;
     private long totalElements;
     private int totalPages;
     private boolean last;
-    private List<EmployerResponseDto> data;
+    private List<ResumeResponseDataDto> data;
 }

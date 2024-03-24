@@ -10,8 +10,8 @@ import vn.unigap.api.common.HttpConstant;
 import vn.unigap.api.dto.in.employer.EmployerDto;
 import vn.unigap.api.dto.in.job.JobDto;
 import vn.unigap.api.dto.out.ApiCreatedResponse;
-import vn.unigap.api.dto.out.JobResponseByEmployerIdDto;
-import vn.unigap.api.dto.out.JobResponseDto;
+import vn.unigap.api.dto.out.job.JobResponseByEmployerIdDto;
+import vn.unigap.api.dto.out.job.JobResponseDto;
 import vn.unigap.api.mapper.ApiCreatedResponseMapper;
 import vn.unigap.api.service.JobService;
 

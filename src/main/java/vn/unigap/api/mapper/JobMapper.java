@@ -2,8 +2,8 @@ package vn.unigap.api.mapper;
 
 import org.modelmapper.ModelMapper;
 import vn.unigap.api.dto.in.job.JobDto;
-import vn.unigap.api.dto.out.JobByEmployerIdDto;
-import vn.unigap.api.dto.out.JobResponseDto;
+import vn.unigap.api.dto.out.job.JobByEmployerIdDto;
+import vn.unigap.api.dto.out.job.JobResponseDto;
 import vn.unigap.api.entity.Job;
 
 public class JobMapper {
